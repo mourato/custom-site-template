@@ -21,6 +21,7 @@ touch ${VVV_PATH_TO_SITE}/log/error.log
 touch ${VVV_PATH_TO_SITE}/log/access.log
 
 # Install and configure the latest stable version of WordPress
+cd ..
 if [[ ! -f "${VVV_PATH_TO_SITE}/wp-load.php" ]]; then
     echo "Downloading WordPress..."
 	noroot wp core download --version="${WP_VERSION}"
@@ -47,7 +48,7 @@ if ! $(noroot wp core is-installed); then
   noroot wp core ${INSTALL_COMMAND} --url="${DOMAIN}" --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="remourato@gmail.com" --admin_password="admin"
 else
   echo "Updating WordPress Stable..."
-  cd ${VVV_PATH_TO_SITE}/
+  cd ${VVV_PATH_TO_SITE}
   noroot wp core update --version="${WP_VERSION}"
 fi
 
